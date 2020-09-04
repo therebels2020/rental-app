@@ -2,7 +2,7 @@ const path = require('path')
 
 const INDEX_FILE = '../src/index.html'
 
-routes = [
+const routes = [
     {
         method: 'GET',
         path: '/',
