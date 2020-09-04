@@ -1,6 +1,5 @@
 const path = require('path')
 const db = require('./db/db.js')
-const { resolve } = require('path')
 
 const INDEX_FILE = '../src/index.html'
 
