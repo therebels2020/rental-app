@@ -7,6 +7,7 @@ module.exports = {
     },
     database: {
         file: path.join(__dirname, 'server/db/data/rentalapp.db'),
-        setupFile: path.join(__dirname, 'server/db/setup.sql')
+        setupFile: path.join(__dirname, 'server/db/setup.sql'),
+        mockDataDir: path.join(__dirname, 'server/db/mockdata')
     }
 }
