@@ -2,11 +2,11 @@
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert') // For serving static files
 const { ApolloServer } = require('apollo-server-hapi')
-
+const LocationsAPI = require('./db/apis/LocationsAPI.js')
+const resolvers = require('./db/resolvers/resolvers.js')
 // config = require('dotenv').config().parsed
 const routes = require('./routes.js')
 const typeDefs = require('./schema.js')
-const LocationsAPI = require('./db/apis/LocationsAPI.js')
 
 const db = require('./db/db.js')
 
@@ -16,10 +16,10 @@ const HOST = '127.0.0.1'
 const init = async () => {
     const apolloServer = new ApolloServer({
         typeDefs,
-        // resolvers: apollo.resolvers
-        // dataSources: () => ({
-        //     locationsAPI: new LocationsAPI({ db })
-        // })
+        resolvers,
+        dataSources: () => ({
+            locationsAPI: new LocationsAPI({ db })
+        })
     })
 
     // eslint-disable-next-line new-cap
