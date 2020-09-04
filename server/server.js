@@ -1,38 +1,16 @@
 // const Path = require('path')
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert') // For serving static files
-const { ApolloServer } = require('apollo-server-hapi')
-const LocationsAPI = require('./db/apis/LocationsAPI.js')
-const resolvers = require('./db/resolvers/resolvers.js')
-// config = require('dotenv').config().parsed
 const routes = require('./routes.js')
-const typeDefs = require('./schema.js')
-
-const db = require('./db/db.js')
 
 const PORT = 1234
 const HOST = '127.0.0.1'
 
 const init = async () => {
-    const apolloServer = new ApolloServer({
-        typeDefs,
-        resolvers,
-        dataSources: () => ({
-            locationsAPI: new LocationsAPI({ db })
-        })
-    })
-
-    // eslint-disable-next-line new-cap
     const server = new Hapi.server({
         port: PORT,
         host: HOST
     })
-
-    await apolloServer.applyMiddleware({
-        app: server
-    })
-
-    await apolloServer.installSubscriptionHandlers(server.listener)
 
     await server.register([
         Inert
