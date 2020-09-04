@@ -21,7 +21,6 @@ CREATE TABLE Location (
   address varchar(80),
   lat float(10,6),
   lng float(10,6),
-  type varchar(30),
 
   PRIMARY KEY (id)
 
