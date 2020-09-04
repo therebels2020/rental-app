@@ -1,6 +1,6 @@
 module.exports = {
     Query: {
-        location: (_, { id }, { dataSources }) => dataSources.locationsAPI.getLocationById({ id }),
+        location: (_, { locationId }, { dataSources }) => dataSources.locationsAPI.getLocationById({ locationId }),
         locations: (_, __, { dataSources }) => dataSources.locationsAPI.getAllLocations()
     }
 }

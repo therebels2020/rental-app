@@ -11,10 +11,10 @@ class LocationAPI extends DataSource {
         this.context = config.context
     }
 
-    async getLocationById ({ id: idArg } = {}) {
-        const id = this.context && this.context.location ? this.context.location.id : idArg
+    async getLocationById ({ locationId: idArg } = {}) {
+        const locationId = this.context && this.context.location ? this.context.location.locationId : idArg
         const location = await new Promise((resolve, reject) => {
-            this.db.get('SELECT * FROM Location WHERE id = ? ', [id], (err, row) => {
+            this.db.get('SELECT * FROM Location WHERE locationId = ? ', [locationId], (err, row) => {
                 if (err) reject(err)
                 resolve(row)
             })

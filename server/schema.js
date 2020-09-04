@@ -5,15 +5,16 @@ const typeDefs = gql`
     #     "A simple type for getting started!"
     #     hello: String
     # }
+    scalar Date
+
     type Query {
-        location(id: ID!): Location
+        location(locationId: ID!): Location
         locations: [Location]!
     }
     
     type Mutation {
         addLocation(launchIds: [ID]!): LocationUpdateResponse!
         removeLocation(launchId: ID!): LocationUpdateResponse!
-        # login(email: String): String # login token
     }
 
     type LocationUpdateResponse {
@@ -22,14 +23,61 @@ const typeDefs = gql`
         location: Location
     }
 
-
     type Location {
-        id: ID!
+        locationId: ID!
         name: String
         address: String
         lat: Float
         lng: Float
         type: String
+    }
+
+    type User {
+        userId: Int,
+        userName: String,
+        fName: String,
+        lName: String,
+        password: String,
+        address: String,
+        phoneNumber: Int,
+        dob: Date,
+        subExpiry: Date,
+    }
+
+    type Review {
+        locationId: ID!,
+        userId: ID!,
+        overallScore: Int,
+        reviewDate: Date
+    }
+
+    type Moisture {
+        locationId: ID!,
+        userId: ID!,
+        hasLeaks: Boolean,
+        isDamp: Boolean,
+        hasMould: Boolean,
+        mouldLocation: String,
+        comments: String
+    }
+
+    type Insulation {
+        locationId: ID!,
+        userId: ID!,
+        doubleGlazed: Boolean,
+        underFloor: Boolean,
+        wallAndCeiling: Boolean,
+        comments: String
+    }
+
+    type Heating {
+        locationId: ID!,
+        userId: ID!,
+        hasHeatpump: Boolean,
+        hasFire: Boolean,
+        hasHeaters: Boolean,
+        warmth: Int,
+        comments: String
     }
 `
 /*
