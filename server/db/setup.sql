@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS User (
 
 CREATE TABLE IF NOT EXISTS Location (
 
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  locationId INTEGER PRIMARY KEY AUTOINCREMENT,
   -- id INT(11),
   name varchar(60),
   address varchar(80),
