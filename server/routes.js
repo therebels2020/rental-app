@@ -15,6 +15,7 @@ const routes = [
         method: 'GET',
         path: '/api/reviews/{locationId}',
         handler: (request, h) => {
+            // console.log(request.params.locationId)
             return new Promise((resolve, reject) => {
                 db.all(
                     `
