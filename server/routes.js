@@ -20,25 +20,25 @@ const routes = [
                 db.all(
                     `
                     SELECT Review.locationId, Review.userId, Review.overallScore, Review.reviewDate,
-                        Moisture.hasLeaks, Moisture.hasMould, Moisture.isDamp, Moisture.mouldLocation, Moisture.comments,
-                        Heating.hasFire, Heating.hasHeaters, Heating.hasHeatpump, Heating.warmth, Heating.comments,
-                        Insulation.doubleGlazed, Insulation.underFloor, Insulation.wallAndCeiling, Insulation.comments,
-                        Maintenance.hasDrafts, Maintenance.hasEarthquakeDamage, Maintenance.comments,
-                        Ventilation.hasExtractorFans, Ventilation.hasWindows, Ventilation.comments,
-                        WaterQuality.cleanWater, WaterQuality.goodPressure, WaterQuality.comments
+                        Moisture.hasLeaks, Moisture.hasMould, Moisture.isDamp, Moisture.mouldLocation, Moisture.comments as moistureComments,
+                        Heating.hasFire, Heating.hasHeaters, Heating.hasHeatpump, Heating.warmth, Heating.comments as heatingComments,
+                        Insulation.doubleGlazed, Insulation.underFloor, Insulation.wallAndCeiling, Insulation.comments as insulationComments,
+                        Maintenance.hasDrafts, Maintenance.hasEarthquakeDamage, Maintenance.comments as maintenanceComments,
+                        Ventilation.hasExtractorFans, Ventilation.hasWindows, Ventilation.comments as ventilationComments,
+                        WaterQuality.cleanWater, WaterQuality.goodPressure, WaterQuality.comments as waterQualityComments
                     FROM Review 
                         LEFT JOIN Moisture 
-                        ON Review.locationId = Moisture.locationId
+                        ON Review.locationId = Moisture.locationId AND Review.userId = Moisture.userId 
                         LEFT JOIN Heating 
-                        ON Review.locationId = Heating.locationId
+                        ON Review.locationId = Heating.locationId AND Review.userId = Heating.userId
                         LEFT JOIN Insulation 
-                        ON Review.locationId = Insulation.locationId
+                        ON Review.locationId = Insulation.locationId AND Review.userId = Insulation.userId
                         LEFT JOIN Maintenance 
-                        ON Review.locationId = Maintenance.locationId
+                        ON Review.locationId = Maintenance.locationId AND Review.userId = Maintenance.userId
                         LEFT JOIN Ventilation 
-                        ON Review.locationId = Ventilation.locationId
+                        ON Review.locationId = Ventilation.locationId AND Review.userId = Ventilation.userId
                         LEFT JOIN WaterQuality 
-                        ON Review.locationId = WaterQuality.locationId
+                        ON Review.locationId = WaterQuality.locationId AND Review.userId = WaterQuality.userId
                     WHERE Review.locationId = ?
                     ORDER BY reviewDate DESC
                     `, [request.params.locationId], (err, data) => {

@@ -1,5 +1,5 @@
 insert into Location (locationId, name, address, lat, lng) values 
-(1, 'Grasskamp', "45 Albert Terrace,", -43.5668308, 172.6584233),
+(1, 'Grasskamp', "45 Albert Terrace", -43.5668308, 172.6584233),
 (2, 'Laurel', "53 Ramahana Road", -43.563990, 172.653829),
 (3, 'Monica', "12 Palatine Terrace", -43.565665, 172.646815),
 (4, 'Charing Cross', "152 England Street", -43.528266, 172.663651),
